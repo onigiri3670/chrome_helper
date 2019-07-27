@@ -18,11 +18,12 @@ $(function(){
   });
 
   $(document).keydown(function (e) {
-      if (event.metaKey){
+      if (event.ctrlKey){
         var keyName = keysCorresponce[e.which]
         console.log("#shortcutLink" + keyName);
         if (keyName){
           $("#shortcutLink" + keyName).click();
+          // $("#search h3")[parseInt(keyName)].click();
         }
       }
   });
