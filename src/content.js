@@ -1,4 +1,4 @@
-window.addEventListener("load", function(){
+( function(e) {
   this.focusIndex = 0;
   this.focusItem = function(index) {
     var t = this.links();
@@ -15,8 +15,9 @@ window.addEventListener("load", function(){
      }))
   };
 
-  this.clickNext = function(){ document.querySelector('#pnnext').click(); };
-  this.clickPrev = function(){ document.querySelector('#pnprev').click(); };
+  this.clickLink = function(ele){ ele && ele.click(); }
+  this.clickNext = function(){ this.clickLink(document.querySelector('#pnnext')); };
+  this.clickPrev = function(){ this.clickLink(document.querySelector('#pnprev')); };
   this.actByKeydown = function(event){
       if (event.key === 'ArrowDown' || event.key === 'j') {
         let _, focusedEle = this.focusItem(this.focusIndex+1);
@@ -29,5 +30,5 @@ window.addEventListener("load", function(){
       }
   };
   document.addEventListener('keydown', this.actByKeydown.bind(this));
-
-});
+  this.focusItem(0)
+}() );
