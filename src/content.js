@@ -1,31 +1,27 @@
-$(function(){
-  var keysCorresponce = {
-    48: "0",
-    49: "1",
-    50: "2",
-    51: "3",
-    52: "4",
-    53:	"5",
-    54:	"6",
-    55:	"7",
-    56:	"8",
-    57:	"9",
-  }
-  $("#search h3").each(function(index){
-    var idHtml = "id = \"shortcutLink" + index + "\""
-    var titleIndexHtml = (text) => "<span " + idHtml + ">" + text + "<span>"
-    $(this).parent().prepend(titleIndexHtml("[" + index + "]&nbsp;"));
-  });
+  window.addEventListener("load", function(){
+    this.focusIndex = 0;
+    this.focusItem = function(index) {
+      var t = this.links();
+      if (!(index >= 0 && index < t.length)) return null;
+      this.focusIndex = index;
+      var n = t[this.focusIndex];
+      return n.focus(), n
+    };
+    this.links = function(){
+       let a_tags = Array.from(document.querySelectorAll('a:has(>h3)')); 
+       return a_tags.filter((function(a_tag) {
+         return a_tag.checkVisibility()
+       }))
+    };
 
-  $(document).keydown(function (e) {
-      if (event.ctrlKey){
-        var keyName = keysCorresponce[e.which]
-        console.log("#shortcutLink" + keyName);
-        if (keyName){
-          $("#shortcutLink" + keyName).click();
-          // $("#search h3")[parseInt(keyName)].click();
+    this.actByKeydown = function(event){
+        if (event.key === 'ArrowDown') {
+          let _, focusedEle = this.focusItem(this.focusIndex+1);
+        } else if (event.key === 'ArrowUp') {
+          let _, focusedEle = this.focusItem(this.focusIndex-1);
         }
-      }
-  });
+        console.log(this.focusIndex);
+    };
+    document.addEventListener('keydown', this.actByKeydown.bind(this));
 
-});
+  });

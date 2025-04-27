@@ -1,13 +1,11 @@
 {
   "name": "GoogleSearchHelper",
-  "version": "1.0.0",
-  "manifest_version": 2,
+  "version": "3.0.0",
+  "manifest_version": 3,
   "description": "Adding shortcut on google search result page. ",
   "content_scripts": [{
     "matches": ["https://www.google.com/search?*"],
-    "js": [
-      "jquery-3.4.1.slim.min.js",
-      "content.js"
-    ]
+    "js": ["content.js"],
+    "css": ["style.css"]
   }]
 }
