@@ -2,7 +2,8 @@
     this.focusIndex = 0;
     this.focusItem = function(index) {
       var t = this.links();
-      if (!(index >= 0 && index < t.length)) return null;
+      if (index < 0) { this.clickPrev(); }
+      else if (index >= t.length) { this.clickNext(); };
       this.focusIndex = index;
       var n = t[this.focusIndex];
       return n.focus(), n
@@ -14,11 +15,17 @@
        }))
     };
 
+    this.clickNext = function(){ document.querySelector('#pnnext').click(); };
+    this.clickPrev = function(){ document.querySelector('#pnprev').click(); };
     this.actByKeydown = function(event){
         if (event.key === 'ArrowDown') {
           let _, focusedEle = this.focusItem(this.focusIndex+1);
         } else if (event.key === 'ArrowUp') {
           let _, focusedEle = this.focusItem(this.focusIndex-1);
+        } else if (event.key === 'ArrowRight') {
+          this.clickNext();
+        } else if (event.key === 'ArrowLeft') {
+          this.clickPrev();
         }
         console.log(this.focusIndex);
     };
