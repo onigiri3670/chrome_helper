@@ -19,13 +19,13 @@
   this.clickNext = function(){ this.clickLink(document.querySelector('#pnnext')); };
   this.clickPrev = function(){ this.clickLink(document.querySelector('#pnprev')); };
   this.actByKeydown = function(event){
-      if (event.key === 'ArrowDown' || event.key === 'j') {
+      if (event.key === 'ArrowDown') {
         let _, focusedEle = this.focusItem(this.focusIndex+1);
-      } else if (event.key === 'ArrowUp' || event.key === 'k') {
+      } else if (event.key === 'ArrowUp') {
         let _, focusedEle = this.focusItem(this.focusIndex-1);
-      } else if (event.key === 'ArrowRight' || event.key === 'h') {
+      } else if (event.key === 'ArrowRight') {
         this.clickNext();
-      } else if (event.key === 'ArrowLeft' || event.key === 'l') {
+      } else if (event.key === 'ArrowLeft') {
         this.clickPrev();
       }
   };
