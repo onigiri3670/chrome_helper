@@ -16,6 +16,7 @@
   };
 
   this.actByKeydown = function(event){
+      if (document.activeElement.tagName == 'TEXTAREA';) { return; }:
       if (event.key === 'ArrowDown') {
         let _, focusedEle = this.focusItem(this.focusIndex+1);
       } else if (event.key === 'ArrowUp') {
